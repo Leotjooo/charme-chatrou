@@ -1,0 +1,1127 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Charme &amp; Chatrou — Champagne</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* ── SETUP ── */
+:root{
+  --champagne:#F7EDD8;--gold:#C9A84C;--gold-light:#E8C97A;
+  --burgundy:#6B2737;--green:#2A5C35;--dark:#1C1612;
+  --text:#3A2E26;--text-light:#7A6A5A;--white:#FDFAF5;
+  --border:rgba(201,168,76,0.2);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Jost',sans-serif;background:var(--white);color:var(--text);font-weight:300;min-height:100vh}
+.view{display:none}.view.active{display:block}
+
+/* ── NAV ── */
+.top-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.1rem 3rem;background:rgba(28,22,18,.94);backdrop-filter:blur(14px);border-bottom:1px solid rgba(201,168,76,.14)}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:1rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold-light);cursor:pointer;flex-shrink:0}
+.nav-center{display:flex;gap:2rem;list-style:none}
+.nav-center a{font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(247,237,216,.55);cursor:pointer;transition:color .25s;text-decoration:none}
+.nav-center a:hover{color:var(--gold-light)}
+.nav-right{display:flex;align-items:center;gap:1rem}
+.lang-bar{display:flex;gap:3px}
+.lang-btn{background:none;border:1px solid rgba(201,168,76,.22);color:rgba(247,237,216,.45);font-family:'Jost',sans-serif;font-size:.62rem;letter-spacing:.1em;padding:.26rem .52rem;cursor:pointer;transition:all .22s}
+.lang-btn:hover,.lang-btn.active{border-color:var(--gold);color:var(--gold-light)}
+.admin-link{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(247,237,216,.25);cursor:pointer;transition:color .22s;border:none;background:none;font-family:'Jost',sans-serif}
+.admin-link:hover{color:var(--gold)}
+.btn-book-nav{font-family:'Jost',sans-serif;font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;padding:.45rem 1.1rem;background:var(--gold);color:var(--dark);border:none;cursor:pointer;transition:background .22s;text-decoration:none;display:inline-block}
+.btn-book-nav:hover{background:var(--gold-light)}
+@media(max-width:800px){.nav-center{display:none}}
+
+/* ── HERO ── */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:8rem 2rem 5rem;background:radial-gradient(ellipse at 30% 60%,rgba(201,168,76,.14) 0%,transparent 55%),radial-gradient(ellipse at 78% 18%,rgba(107,39,55,.18) 0%,transparent 50%),linear-gradient(160deg,#1C1612 0%,#241A12 50%,#1A1008 100%);position:relative;overflow:hidden}
+.bubbles{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.bubble{position:absolute;border-radius:50%;border:1px solid rgba(201,168,76,.18);animation:rise linear infinite}
+@keyframes rise{0%{transform:translateY(110vh);opacity:0}10%{opacity:.7}90%{opacity:.2}100%{transform:translateY(-10vh);opacity:0}}
+.hero-eye{font-size:.62rem;letter-spacing:.45em;text-transform:uppercase;color:var(--gold);margin-bottom:1.8rem;opacity:0;animation:fadeUp 1s ease .3s forwards}
+.hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(3.5rem,9vw,8rem);font-weight:300;line-height:.95;color:var(--champagne);opacity:0;animation:fadeUp 1s ease .6s forwards}
+.hero-title em{font-style:italic;color:var(--gold-light)}
+.hero-title .amp{color:rgba(247,237,216,.22);font-size:.8em}
+.hero-sub{font-family:'Cormorant Garamond',serif;font-size:clamp(1rem,2.5vw,1.5rem);font-style:italic;color:rgba(247,237,216,.42);margin-top:1.2rem;opacity:0;animation:fadeUp 1s ease .9s forwards}
+.hero-line{width:48px;height:1px;background:linear-gradient(to right,transparent,var(--gold),transparent);margin:2rem auto;opacity:0;animation:fadeUp 1s ease 1.1s forwards}
+.hero-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;opacity:0;animation:fadeUp 1s ease 1.25s forwards}
+.btn-primary{font-family:'Jost',sans-serif;font-size:.65rem;letter-spacing:.22em;text-transform:uppercase;padding:.8rem 2rem;background:var(--gold);color:var(--dark);border:none;cursor:pointer;transition:background .22s;text-decoration:none;display:inline-block}
+.btn-primary:hover{background:var(--gold-light)}
+.btn-outline{font-family:'Jost',sans-serif;font-size:.65rem;letter-spacing:.22em;text-transform:uppercase;padding:.8rem 2rem;background:none;color:var(--champagne);border:1px solid rgba(247,237,216,.3);cursor:pointer;transition:all .22s;text-decoration:none;display:inline-block}
+.btn-outline:hover{border-color:var(--gold-light);color:var(--gold-light)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── GOLD BAR ── */
+.gold-bar{background:var(--gold);padding:.85rem 3rem;display:flex;justify-content:center;gap:2.5rem;align-items:center;flex-wrap:wrap}
+.gold-bar-item{font-family:'Cormorant Garamond',serif;font-size:.9rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--dark);cursor:pointer;transition:opacity .2s}
+.gold-bar-item:hover{opacity:.7}
+.gold-bar-item span{font-weight:300;font-style:italic}
+.gold-bar-sep{color:rgba(28,22,18,.3);font-size:1.2rem}
+
+/* ── SECTIONS ── */
+.sec-wrap{max-width:1160px;margin:0 auto;padding:5rem 2rem}
+.sec-label{font-size:.6rem;letter-spacing:.42em;text-transform:uppercase;color:var(--gold);text-align:center;margin-bottom:.7rem}
+.sec-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,5vw,3.2rem);font-weight:300;color:var(--dark);text-align:center;margin-bottom:3rem}
+.sec-title em{font-style:italic;color:var(--burgundy)}
+
+/* ── BLOG GRID ── */
+.blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:rgba(201,168,76,.1)}
+@media(max-width:820px){.blog-grid{grid-template-columns:1fr}}
+@media(min-width:821px) and (max-width:1100px){.blog-grid{grid-template-columns:repeat(2,1fr)}}
+.blog-card{background:var(--white);cursor:pointer;transition:background .22s;overflow:hidden}
+.blog-card:hover{background:var(--champagne)}
+.blog-card-img{width:100%;height:200px;object-fit:cover;display:block}
+.blog-card-img-placeholder{width:100%;height:200px;background:linear-gradient(135deg,rgba(201,168,76,.12),rgba(107,39,55,.08));display:flex;align-items:center;justify-content:center;font-size:2rem;opacity:.4}
+.blog-card-body{padding:2.2rem 1.8rem}
+.card-date-label{font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:.9rem}
+.card-title{font-family:'Cormorant Garamond',serif;font-size:1.45rem;font-weight:400;line-height:1.2;color:var(--dark);margin-bottom:.75rem}
+.card-excerpt{font-size:.82rem;line-height:1.75;color:var(--text-light);margin-bottom:1.3rem;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.card-foot{display:flex;justify-content:space-between;align-items:center;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-light);border-top:1px solid var(--border);padding-top:.85rem}
+.card-more{color:var(--gold)}
+.empty-state{text-align:center;padding:5rem 2rem;color:var(--text-light)}
+.empty-icon{font-size:2.5rem;margin-bottom:1rem;opacity:.3}
+.empty-text{font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-style:italic}
+
+/* ── MAGAZINE POST ── */
+.post-wrap{max-width:820px;margin:0 auto;padding:7rem 2rem 5rem}
+.post-back{display:inline-flex;align-items:center;gap:.5rem;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--text-light);cursor:pointer;margin-bottom:3rem;background:none;border:none;font-family:'Jost',sans-serif;transition:color .22s}
+.post-back:hover{color:var(--gold)}
+.post-kicker{font-size:.6rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem}
+.post-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,6vw,4rem);font-weight:300;line-height:1.05;color:var(--dark);margin-bottom:1.5rem}
+.post-meta{display:flex;gap:1rem;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text-light);margin-bottom:0;padding-bottom:2rem;border-bottom:1px solid var(--border);flex-wrap:wrap}
+.post-meta-gold{color:var(--gold)}
+/* hero image */
+.post-hero-img{width:100%;max-height:520px;object-fit:cover;display:block;margin:2.5rem 0}
+/* body */
+.post-body{font-size:1.02rem;line-height:2;color:var(--text)}
+.post-body p{margin-bottom:1.8rem}
+.post-body .post-img-block{margin:2.5rem 0;text-align:center}
+.post-body .post-img-block img{max-width:100%;display:block;margin:0 auto}
+.post-body .post-img-caption{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-light);margin-top:.7rem;text-align:center;font-style:italic}
+.post-body .post-img-full{width:100%;max-height:460px;object-fit:cover}
+.post-body .post-img-half{width:48%;object-fit:cover;max-height:320px}
+.post-img-pair{display:flex;gap:2%;margin:2.5rem 0}
+@media(max-width:600px){.post-img-pair{flex-direction:column;gap:1rem}.post-body .post-img-half{width:100%}}
+
+/* ── QUOTE ── */
+.quote-band{background:var(--dark);padding:5rem 3rem;text-align:center;position:relative;overflow:hidden}
+.quote-band::before{content:'❝';font-family:'Cormorant Garamond',serif;font-size:10rem;color:rgba(201,168,76,.07);position:absolute;top:-1rem;left:2rem;line-height:1}
+.q-text{font-family:'Cormorant Garamond',serif;font-size:clamp(1.4rem,3.5vw,2.2rem);font-weight:300;font-style:italic;color:var(--champagne);max-width:700px;margin:0 auto 1.5rem;position:relative}
+.q-attr{font-size:.6rem;letter-spacing:.35em;text-transform:uppercase;color:var(--gold)}
+
+/* ── HOUSES TEASER ── */
+.houses-teaser{display:grid;grid-template-columns:1fr 1fr;gap:3px;background:rgba(201,168,76,.12);max-width:1160px;margin:0 auto}
+@media(max-width:700px){.houses-teaser{grid-template-columns:1fr}}
+.house-teaser-card{background:var(--white);padding:3rem;cursor:pointer;transition:background .22s;position:relative}
+.house-teaser-card:hover{background:var(--champagne)}
+.house-teaser-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%}
+.ht-charme::before{background:var(--burgundy)}.ht-chatrou::before{background:var(--green)}
+.ht-name{font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:300;font-style:italic;color:var(--dark);margin-bottom:.3rem}
+.ht-loc{font-size:.58rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem}
+.ht-preview{font-size:.88rem;line-height:1.8;color:var(--text-light);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:1.5rem}
+.ht-link{font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--text-light);transition:color .22s}
+.house-teaser-card:hover .ht-link{color:var(--burgundy)}
+
+/* ── HOUSE DETAIL ── */
+.house-detail{max-width:900px;margin:0 auto;padding:7rem 2rem 5rem}
+.house-detail-back{display:inline-flex;align-items:center;gap:.5rem;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--text-light);cursor:pointer;margin-bottom:3rem;background:none;border:none;font-family:'Jost',sans-serif;transition:color .22s}
+.house-detail-back:hover{color:var(--gold)}
+.house-detail-name{font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,7vw,5.5rem);font-weight:300;font-style:italic;line-height:.95;color:var(--dark);margin-bottom:.5rem}
+.house-detail-loc{font-size:.62rem;letter-spacing:.3em;text-transform:uppercase;color:var(--text-light);margin-bottom:3rem;padding-bottom:2.5rem;border-bottom:1px solid var(--border)}
+.house-detail-body{font-size:.95rem;line-height:1.9;color:var(--text)}
+.house-detail-body p{margin-bottom:1.5rem}
+.house-book-strip{background:var(--champagne);padding:3rem;margin-top:3.5rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap;border:1px solid var(--border)}
+.house-book-text{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:300;color:var(--dark)}
+.house-book-text span{font-style:italic}
+.btn-book-large{font-family:'Jost',sans-serif;font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;padding:.9rem 2.2rem;background:var(--dark);color:var(--champagne);border:none;cursor:pointer;text-decoration:none;display:inline-block;transition:background .22s}
+.btn-book-large:hover{background:var(--burgundy)}
+
+/* ── NEWSLETTER ── */
+.newsletter-band{background:var(--dark);padding:5rem 3rem;text-align:center}
+.nl-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:300;color:var(--champagne);margin-bottom:.7rem}
+.nl-title em{font-style:italic;color:var(--gold-light)}
+.nl-sub{font-size:.85rem;color:rgba(247,237,216,.4);margin-bottom:2.5rem;line-height:1.7}
+.nl-form{display:flex;max-width:460px;margin:0 auto}
+.nl-input{flex:1;padding:.85rem 1.2rem;border:1px solid rgba(201,168,76,.25);border-right:none;background:rgba(255,255,255,.06);color:var(--champagne);font-family:'Jost',sans-serif;font-size:.85rem;font-weight:300;outline:none;transition:border-color .22s}
+.nl-input::placeholder{color:rgba(247,237,216,.3)}.nl-input:focus{border-color:var(--gold)}
+.nl-btn{padding:.85rem 1.8rem;background:var(--gold);color:var(--dark);font-family:'Jost',sans-serif;font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;border:none;cursor:pointer;transition:background .22s;white-space:nowrap}
+.nl-btn:hover{background:var(--gold-light)}
+.nl-success{display:none;color:var(--gold-light);font-size:.82rem;margin-top:1.2rem;letter-spacing:.05em}
+.nl-note{font-size:.62rem;color:rgba(247,237,216,.2);margin-top:.8rem;letter-spacing:.06em}
+@media(max-width:540px){.nl-form{flex-direction:column}.nl-input{border-right:1px solid rgba(201,168,76,.25);border-bottom:none}}
+
+/* ── FOOTER ── */
+footer{background:#110E0A;padding:4rem 3rem 0}
+.footer-inner{display:grid;grid-template-columns:2fr 1fr 1fr;gap:3rem;padding-bottom:3rem}
+@media(max-width:700px){.footer-inner{grid-template-columns:1fr}}
+.f-brand{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:300;font-style:italic;color:var(--champagne);margin-bottom:.7rem}
+.f-tagline{font-size:.78rem;color:rgba(247,237,216,.32);line-height:1.7}
+.f-col-title{font-size:.58rem;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem}
+.f-links{list-style:none;display:flex;flex-direction:column;gap:.6rem}
+.f-links a{color:rgba(247,237,216,.4);text-decoration:none;font-size:.83rem;transition:color .22s;cursor:pointer}
+.f-links a:hover{color:var(--gold-light)}
+.f-bottom{border-top:1px solid rgba(201,168,76,.1);padding:1.2rem 0;display:flex;justify-content:space-between;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(247,237,216,.18);flex-wrap:wrap;gap:.5rem}
+
+/* ══ ADMIN ══ */
+.admin-wrap{min-height:100vh;background:#0F0C09;padding-top:70px}
+.admin-topbar{background:rgba(20,16,12,.98);border-bottom:1px solid rgba(201,168,76,.18);padding:1.4rem 3rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:70px;z-index:50;flex-wrap:wrap;gap:.8rem}
+.admin-topbar h1{font-family:'Cormorant Garamond',serif;font-size:1.45rem;font-weight:300;color:var(--champagne)}
+.admin-topbar h1 em{color:var(--gold);font-style:italic}
+.admin-tabs{display:flex;gap:0;border-bottom:1px solid rgba(201,168,76,.12);margin-bottom:2rem}
+.atab{background:none;border:none;border-bottom:2px solid transparent;padding:.75rem 1.6rem;font-family:'Jost',sans-serif;font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(247,237,216,.3);cursor:pointer;transition:all .2s;margin-bottom:-1px}
+.atab:hover{color:rgba(247,237,216,.6)}.atab.active{color:var(--gold-light);border-bottom-color:var(--gold)}
+.admin-body{max-width:1100px;margin:0 auto;padding:2rem}
+.btn{font-family:'Jost',sans-serif;font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;padding:.62rem 1.4rem;border:none;cursor:pointer;transition:all .22s}
+.btn-gold{background:var(--gold);color:var(--dark)}.btn-gold:hover{background:var(--gold-light)}
+.btn-dark{background:rgba(247,237,216,.09);color:var(--champagne);border:1px solid rgba(201,168,76,.22)}.btn-dark:hover{background:rgba(201,168,76,.14)}
+.btn-danger{background:rgba(107,39,55,.45);color:#F7C8C8;border:1px solid rgba(107,39,55,.65)}.btn-danger:hover{background:var(--burgundy)}
+.btn-sm{padding:.38rem .85rem;font-size:.58rem}
+.post-list{display:flex;flex-direction:column;gap:1px;background:rgba(201,168,76,.08);margin-top:1.2rem}
+.post-row{background:#1A1410;padding:1.3rem 1.8rem;display:flex;align-items:center;gap:1.2rem;transition:background .2s;flex-wrap:wrap}
+.post-row:hover{background:#221A12}
+.pr-title{flex:1;font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--champagne);font-weight:300;min-width:200px}
+.pr-date{font-size:.58rem;color:rgba(247,237,216,.28);letter-spacing:.1em}
+.pr-acts{display:flex;gap:.4rem}
+.badge{display:inline-block;font-size:.52rem;letter-spacing:.14em;text-transform:uppercase;padding:.16rem .5rem;border-radius:2px;margin-left:.5rem;vertical-align:middle}
+.badge-pub{background:rgba(42,92,53,.45);color:#9EE0AC;border:1px solid rgba(42,92,53,.7)}
+.badge-draft{background:rgba(201,168,76,.12);color:var(--gold);border:1px solid rgba(201,168,76,.28)}
+
+/* ── BLOG RICH EDITOR ── */
+.editor-box{background:#1A1410;border:1px solid rgba(201,168,76,.13);padding:2.5rem}
+.editor-meta{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem;margin-bottom:1.5rem}
+@media(max-width:680px){.editor-meta{grid-template-columns:1fr}}
+.field{display:flex;flex-direction:column;gap:.45rem}
+.field label{font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold)}
+.field input,.field select,.field textarea{background:#110E0A;border:1px solid rgba(201,168,76,.16);color:var(--champagne);font-family:'Jost',sans-serif;font-size:.88rem;font-weight:300;padding:.72rem .95rem;outline:none;resize:vertical;transition:border-color .2s}
+.field input:focus,.field textarea:focus{border-color:rgba(201,168,76,.45)}
+.field select{cursor:pointer}.field select option{background:#1A1410}
+.lang-tabs-editor{display:flex;flex-wrap:wrap;border-bottom:1px solid rgba(201,168,76,.12);margin-bottom:1.5rem}
+.ltab{background:none;border:none;border-bottom:2px solid transparent;padding:.65rem 1.3rem;font-family:'Jost',sans-serif;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(247,237,216,.3);cursor:pointer;transition:all .2s;margin-bottom:-1px}
+.ltab:hover{color:rgba(247,237,216,.6)}.ltab.active{color:var(--gold-light);border-bottom-color:var(--gold)}
+.lang-panel{display:none}.lang-panel.active{display:flex;flex-direction:column;gap:1.3rem}
+.editor-actions{display:flex;gap:.7rem;justify-content:flex-end;margin-top:2rem;padding-top:1.5rem;border-top:1px solid rgba(201,168,76,.1);flex-wrap:wrap}
+
+/* ── RICH CONTENT EDITOR ── */
+.rich-editor-wrap{border:1px solid rgba(201,168,76,.16);background:#110E0A}
+.rich-toolbar{display:flex;flex-wrap:wrap;gap:4px;padding:.6rem .8rem;border-bottom:1px solid rgba(201,168,76,.12);background:#1A1410}
+.rich-toolbar button{background:rgba(247,237,216,.07);border:1px solid rgba(201,168,76,.15);color:rgba(247,237,216,.55);font-family:'Jost',sans-serif;font-size:.62rem;letter-spacing:.08em;padding:.3rem .65rem;cursor:pointer;transition:all .18s;border-radius:2px}
+.rich-toolbar button:hover{background:rgba(201,168,76,.18);color:var(--gold-light);border-color:var(--gold)}
+.rich-toolbar .tb-sep{width:1px;background:rgba(201,168,76,.15);margin:0 4px;align-self:stretch}
+.rich-content{min-height:320px;padding:1.4rem;color:var(--champagne);font-family:'Jost',sans-serif;font-size:.9rem;line-height:1.85;outline:none;font-weight:300}
+.rich-content:focus{outline:none}
+.rich-content p{margin-bottom:1rem}
+.rich-content h2{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:300;color:var(--gold-light);margin:1.5rem 0 .8rem}
+.rich-content h3{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:300;color:var(--champagne);margin:1.2rem 0 .6rem}
+.rich-content img{max-width:100%;display:block;margin:.5rem auto}
+.rich-content .img-wrap{margin:1rem 0;position:relative}
+.rich-content .img-caption{font-size:.72rem;color:rgba(247,237,216,.4);text-align:center;font-style:italic;margin-top:.3rem}
+.img-insert-modal{display:none;position:fixed;inset:0;background:rgba(10,8,6,.88);z-index:9000;align-items:center;justify-content:center}
+.img-insert-modal.open{display:flex}
+.img-modal-box{background:#1A1410;border:1px solid rgba(201,168,76,.25);padding:2.5rem;width:100%;max-width:520px}
+.img-modal-box h3{font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--champagne);margin-bottom:1.5rem;font-weight:300}
+.img-modal-box .field{margin-bottom:1rem}
+.img-modal-actions{display:flex;gap:.7rem;justify-content:flex-end;margin-top:1.5rem}
+.img-preview{max-width:100%;max-height:160px;display:none;margin:.8rem 0;object-fit:cover}
+.img-size-btns{display:flex;gap:.4rem;flex-wrap:wrap;margin-top:.3rem}
+.img-size-btn{background:rgba(247,237,216,.07);border:1px solid rgba(201,168,76,.15);color:rgba(247,237,216,.5);font-family:'Jost',sans-serif;font-size:.58rem;letter-spacing:.1em;padding:.3rem .7rem;cursor:pointer;transition:all .18s}
+.img-size-btn.active,.img-size-btn:hover{background:rgba(201,168,76,.2);border-color:var(--gold);color:var(--gold-light)}
+
+/* cover image field */
+.cover-img-wrap{margin-bottom:1.5rem}
+.cover-preview{width:100%;height:180px;object-fit:cover;display:none;margin-top:.6rem;border:1px solid rgba(201,168,76,.18)}
+
+/* house editor */
+.house-editor-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem;margin-top:1.5rem}
+@media(max-width:680px){.house-editor-grid{grid-template-columns:1fr}}
+.house-edit-section{background:#1A1410;border:1px solid rgba(201,168,76,.13);padding:2rem;position:relative}
+.house-edit-section::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%}
+.hes-charme::before{background:var(--burgundy)}.hes-chatrou::before{background:var(--green)}
+.hes-name{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:300;font-style:italic;color:var(--champagne);margin-bottom:1.5rem}
+
+/* subscribers */
+.sub-list{display:flex;flex-direction:column;gap:1px;background:rgba(201,168,76,.08);margin-top:1.2rem}
+.sub-row{background:#1A1410;padding:1rem 1.8rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.5rem}
+.sub-email{font-size:.85rem;color:var(--champagne)}
+.sub-date{font-size:.6rem;color:rgba(247,237,216,.28);letter-spacing:.08em}
+.sub-empty{text-align:center;padding:3rem;color:rgba(247,237,216,.2);font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-style:italic}
+.sub-count{font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:.8rem}
+
+/* login */
+.login-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;background:var(--dark)}
+.login-box{background:#1A1410;border:1px solid rgba(201,168,76,.18);padding:3rem 2.5rem;width:100%;max-width:370px;text-align:center}
+.login-title{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:var(--champagne);margin-bottom:.3rem}
+.login-sub{font-size:.7rem;color:rgba(247,237,216,.3);letter-spacing:.1em;margin-bottom:2rem}
+.login-box .field{text-align:left;margin-bottom:1.1rem}
+.login-err{font-size:.73rem;color:#F7A0A0;margin-bottom:.9rem;display:none}
+.login-hint{margin-top:1.8rem;padding-top:1.4rem;border-top:1px solid rgba(201,168,76,.08);font-size:.58rem;letter-spacing:.1em;color:rgba(247,237,216,.18)}
+.login-hint span{color:rgba(201,168,76,.4)}
+
+/* toast */
+.toast{position:fixed;bottom:2rem;right:2rem;background:var(--dark);border:1px solid var(--gold);color:var(--champagne);padding:1rem 1.8rem;font-size:.78rem;letter-spacing:.04em;transform:translateY(4rem);opacity:0;transition:all .32s;z-index:9999;pointer-events:none;max-width:320px}
+.toast.show{transform:translateY(0);opacity:1}
+
+@media(max-width:580px){.top-nav{padding:1rem 1.2rem}.admin-topbar{padding:1rem 1.2rem}.admin-body{padding:1.5rem 1rem}.editor-box{padding:1.5rem 1rem}}
+</style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav class="top-nav">
+  <div class="nav-logo" onclick="showView('home')">Charme &amp; Chatrou</div>
+  <ul class="nav-center">
+    <li><a onclick="showView('home')" id="navBlogs">Blogs</a></li>
+    <li><a onclick="showHouse('charme')" id="navCharme">Charme</a></li>
+    <li><a onclick="showHouse('chatrou')" id="navChatrou">Chatrou</a></li>
+    <li><a href="https://www.lacduder.eu/" target="_blank" id="navReserve">Reserveren</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="lang-bar">
+      <button class="lang-btn active" onclick="setLang('nl')">NL</button>
+      <button class="lang-btn" onclick="setLang('fr')">FR</button>
+      <button class="lang-btn" onclick="setLang('de')">DE</button>
+      <button class="lang-btn" onclick="setLang('en')">EN</button>
+    </div>
+    <a class="btn-book-nav" href="https://www.lacduder.eu/" target="_blank" id="navBookBtn">Reserveren</a>
+    <button class="admin-link" id="adminBtn" onclick="showView('login')">Beheer</button>
+  </div>
+</nav>
+
+<!-- ═══ HOME ═══ -->
+<div class="view active" id="view-home">
+  <div class="hero">
+    <div class="bubbles" id="bubblesCont"></div>
+    <div class="hero-eye" id="heroEye">Vakantiehuizen in de Champagne</div>
+    <div class="hero-title"><em>Charme</em><span class="amp"> &amp; </span><em>Chatrou</em></div>
+    <div class="hero-sub" id="heroSub">Verhalen uit de druivenvelden van de Champagne</div>
+    <div class="hero-line"></div>
+    <div class="hero-btns">
+      <a class="btn-primary" href="https://www.lacduder.eu/" target="_blank" id="heroBookBtn">Reserveren</a>
+      <button class="btn-outline" onclick="scrollToBlog()" id="heroBlogBtn">Lees de blogs</button>
+    </div>
+  </div>
+
+  <div class="gold-bar">
+    <div class="gold-bar-item" onclick="showHouse('charme')"><span>Charme</span></div>
+    <div class="gold-bar-sep">◆</div>
+    <div class="gold-bar-item" style="font-size:.7rem;letter-spacing:.1em;opacity:.55;cursor:default">Champagne, France</div>
+    <div class="gold-bar-sep">◆</div>
+    <div class="gold-bar-item" onclick="showHouse('chatrou')"><span>Chatrou</span></div>
+  </div>
+
+  <div class="sec-wrap" id="blogAnchor">
+    <div class="sec-label" id="secLabel">Laatste verhalen</div>
+    <h2 class="sec-title" id="secTitle">Blogs uit de <em>Champagne</em></h2>
+    <div id="blogGrid"><div class="empty-state"><div class="empty-icon">🥂</div><p class="empty-text">Nog geen blogs gepubliceerd — kom binnenkort terug!</p></div></div>
+  </div>
+
+  <div class="quote-band">
+    <div class="q-text" id="qText">La Champagne est une fête permanente — de Champagne is een eeuwig feest, voor wie de tijd neemt om te luisteren.</div>
+    <div class="q-attr">Champagne, France</div>
+  </div>
+
+  <div class="sec-wrap" style="padding-bottom:0">
+    <div class="sec-label" id="housesLabel">Onze huizen</div>
+    <h2 class="sec-title" id="housesTitle"><em>Charme</em> &amp; <em>Chatrou</em></h2>
+  </div>
+  <div class="houses-teaser">
+    <div class="house-teaser-card ht-charme" onclick="showHouse('charme')">
+      <div class="ht-name">Charme</div>
+      <div class="ht-loc">Champagne, France</div>
+      <p class="ht-preview" id="charmePreview">Informatie wordt binnenkort toegevoegd.</p>
+      <div class="ht-link" id="charmeLinkText">Meer over Charme →</div>
+    </div>
+    <div class="house-teaser-card ht-chatrou" onclick="showHouse('chatrou')">
+      <div class="ht-name">Chatrou</div>
+      <div class="ht-loc">Champagne, France</div>
+      <p class="ht-preview" id="chatrouPreview">Informatie wordt binnenkort toegevoegd.</p>
+      <div class="ht-link" id="chatrouLinkText">Meer over Chatrou →</div>
+    </div>
+  </div>
+
+  <div class="newsletter-band" id="nieuwsbrief">
+    <h3 class="nl-title" id="nlTitle">Blijf op de <em>hoogte</em></h3>
+    <p class="nl-sub" id="nlSub">Ontvang nieuwe blogs direct in uw inbox.<br>Schrijf u in en mis nooit een verhaal uit de Champagne.</p>
+    <div class="nl-form" id="nlForm">
+      <input class="nl-input" type="email" id="nlEmail" placeholder="uw@emailadres.nl">
+      <button class="nl-btn" id="nlBtn" onclick="subscribeNewsletter()">Aanmelden</button>
+    </div>
+    <div class="nl-success" id="nlSuccess">✓ Bedankt! U ontvangt voortaan onze blogs.</div>
+    <div class="nl-note" id="nlNote">Uw e-mailadres wordt niet gedeeld met derden.</div>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <div class="f-brand">Charme &amp; Chatrou</div>
+        <p class="f-tagline" id="fTagline">Vakantiehuizen in het hart van de Franse Champagne. Blogs over wijn, cultuur, natuur en het goede leven.</p>
+      </div>
+      <div>
+        <div class="f-col-title" id="fNav">Navigatie</div>
+        <ul class="f-links">
+          <li><a onclick="showView('home')" id="fBlogs">Blogs</a></li>
+          <li><a onclick="showHouse('charme')">Charme</a></li>
+          <li><a onclick="showHouse('chatrou')">Chatrou</a></li>
+          <li><a href="#nieuwsbrief" id="fNl">Nieuwsbrief</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="f-col-title" id="fReserve">Reserveren</div>
+        <ul class="f-links">
+          <li><a href="https://www.lacduder.eu/" target="_blank">lacduder.eu</a></li>
+          <li><a href="https://www.lacduder.eu/" target="_blank" id="fBook">Beschikbaarheid</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="f-bottom">
+      <span>© 2025 Charme &amp; Chatrou — Champagne, France</span>
+      <span id="fMade">Met liefde gemaakt</span>
+    </div>
+  </footer>
+</div>
+
+<!-- ═══ HOUSE PAGE ═══ -->
+<div class="view" id="view-house">
+  <div class="house-detail">
+    <button class="house-detail-back" onclick="showView('home')" id="houseBack">← Terug</button>
+    <div class="house-detail-name" id="houseName">Charme</div>
+    <div class="house-detail-loc">Champagne, France</div>
+    <div class="house-detail-body" id="houseBody"></div>
+    <div class="house-book-strip">
+      <div class="house-book-text" id="houseBookText">Klaar voor een onvergetelijk verblijf in <span>de Champagne</span>?</div>
+      <a class="btn-book-large" href="https://www.lacduder.eu/" target="_blank" id="houseBookBtn">Reserveer via lacduder.eu →</a>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ POST VIEW (Magazine style) ═══ -->
+<div class="view" id="view-post">
+  <div class="post-wrap">
+    <button class="post-back" onclick="showView('home')" id="postBack">← Terug naar overzicht</button>
+    <div class="post-kicker" id="postKicker">Champagne</div>
+    <h1 class="post-title" id="postTitle"></h1>
+    <div class="post-meta">
+      <span class="post-meta-gold" id="postDate"></span>
+      <span>◆</span>
+      <span id="postCat"></span>
+    </div>
+    <img id="postHeroImg" class="post-hero-img" src="" alt="" style="display:none">
+    <div class="post-body" id="postBody"></div>
+  </div>
+</div>
+
+<!-- ═══ LOGIN ═══ -->
+<div class="view" id="view-login">
+  <div class="login-wrap">
+    <div class="login-box">
+      <div class="login-title">Beheer</div>
+      <div class="login-sub">Charme &amp; Chatrou</div>
+      <div class="login-err" id="loginErr">Onjuist wachtwoord</div>
+      <div class="field">
+        <label>Wachtwoord</label>
+        <input type="password" id="pwInput" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()">
+      </div>
+      <button class="btn btn-gold" style="width:100%;margin-top:.4rem" onclick="doLogin()">Inloggen</button>
+      <div style="margin-top:1.2rem"><button class="admin-link" onclick="showView('home')" style="color:rgba(247,237,216,.28)">← Terug naar website</button></div>
+      <div class="login-hint">Standaard wachtwoord: <span>champagne2025</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ ADMIN ═══ -->
+<div class="view" id="view-admin">
+  <div class="admin-wrap">
+    <div class="admin-topbar">
+      <h1>Blog <em>Beheer</em></h1>
+      <div style="display:flex;gap:.7rem;flex-wrap:wrap">
+        <button class="btn btn-dark btn-sm" onclick="showView('home')">← Website</button>
+        <button class="btn btn-gold btn-sm" onclick="openEditor(null)">+ Nieuw blog</button>
+        <button class="btn btn-dark btn-sm" onclick="doLogout()">Uitloggen</button>
+      </div>
+    </div>
+    <div class="admin-body">
+      <div class="admin-tabs">
+        <button class="atab active" data-tab="blogs" onclick="switchAdminTab('blogs')">Blogs</button>
+        <button class="atab" data-tab="houses" onclick="switchAdminTab('houses')">Huizen</button>
+        <button class="atab" data-tab="subs" onclick="switchAdminTab('subs')">Nieuwsbrief</button>
+      </div>
+      <div id="adminTabContent"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ EDITOR ═══ -->
+<div class="view" id="view-editor">
+  <div class="admin-wrap">
+    <div class="admin-topbar">
+      <h1 id="editorHeading">Nieuw <em>Blog</em></h1>
+      <div style="display:flex;gap:.7rem;flex-wrap:wrap">
+        <button class="btn btn-dark btn-sm" onclick="showView('admin')">← Lijst</button>
+        <button class="btn btn-dark btn-sm" onclick="saveBlog('draft')">Concept</button>
+        <button class="btn btn-gold btn-sm" onclick="saveBlog('published')">✓ Publiceren</button>
+      </div>
+    </div>
+    <div class="admin-body">
+      <div class="editor-box">
+        <input type="hidden" id="editId">
+        <div class="editor-meta">
+          <div class="field">
+            <label>Categorie label (optioneel)</label>
+            <input type="text" id="editCatLabel" placeholder="bv. Wijn, Cultuur, Natuur, Routes…">
+          </div>
+          <div class="field">
+            <label>Status</label>
+            <select id="editStatus">
+              <option value="draft" selected>Concept (niet zichtbaar voor bezoekers)</option>
+              <option value="published">Gepubliceerd</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Cover image -->
+        <div class="cover-img-wrap">
+          <div class="field">
+            <label>Omslagfoto URL (Cloudinary of andere link)</label>
+            <input type="text" id="editCoverImg" placeholder="https://res.cloudinary.com/…/foto.jpg" oninput="previewCover(this.value)">
+          </div>
+          <img id="coverPreview" class="cover-preview" src="" alt="Omslag preview">
+        </div>
+
+        <div class="lang-tabs-editor">
+          <button class="ltab active" data-lang="nl" onclick="switchLangTab('nl')">🇳🇱 Nederlands</button>
+          <button class="ltab" data-lang="fr" onclick="switchLangTab('fr')">🇫🇷 Français</button>
+          <button class="ltab" data-lang="de" onclick="switchLangTab('de')">🇩🇪 Deutsch</button>
+          <button class="ltab" data-lang="en" onclick="switchLangTab('en')">🇬🇧 English</button>
+        </div>
+
+        <!-- NL -->
+        <div class="lang-panel active" id="panel-nl">
+          <div class="field"><label>Titel (NL)</label><input type="text" id="title-nl" placeholder="Blogtitel in het Nederlands"></div>
+          <div class="field"><label>Korte samenvatting (NL) — zichtbaar op de kaart</label><textarea id="excerpt-nl" style="min-height:75px" placeholder="2–3 zinnen als preview…"></textarea></div>
+          <div class="field">
+            <label>Volledige tekst (NL) — plak hier uw artikel</label>
+            <div class="rich-editor-wrap">
+              <div class="rich-toolbar">
+                <button onclick="rFmt('nl','bold')" title="Vet"><b>V</b></button>
+                <button onclick="rFmt('nl','italic')" title="Cursief"><i>C</i></button>
+                <div class="tb-sep"></div>
+                <button onclick="rFmt('nl','h2')" title="Grote kop">H2</button>
+                <button onclick="rFmt('nl','h3')" title="Kleine kop">H3</button>
+                <div class="tb-sep"></div>
+                <button onclick="openImgModal('nl')" title="Afbeelding invoegen">📷 Afbeelding</button>
+                <div class="tb-sep"></div>
+                <button onclick="rFmt('nl','clear')" title="Opmaak wissen" style="opacity:.5">✕ Wis opmaak</button>
+              </div>
+              <div class="rich-content" id="body-nl" contenteditable="true" data-lang="nl" data-placeholder="Plak of typ hier uw volledige artikel…"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- FR -->
+        <div class="lang-panel" id="panel-fr">
+          <div class="field"><label>Titre (FR)</label><input type="text" id="title-fr" placeholder="Titre en français"></div>
+          <div class="field"><label>Résumé (FR)</label><textarea id="excerpt-fr" style="min-height:75px" placeholder="2–3 phrases…"></textarea></div>
+          <div class="field">
+            <label>Texte complet (FR)</label>
+            <div class="rich-editor-wrap">
+              <div class="rich-toolbar">
+                <button onclick="rFmt('fr','bold')"><b>G</b></button>
+                <button onclick="rFmt('fr','italic')"><i>I</i></button>
+                <div class="tb-sep"></div>
+                <button onclick="rFmt('fr','h2')">H2</button>
+                <button onclick="rFmt('fr','h3')">H3</button>
+                <div class="tb-sep"></div>
+                <button onclick="openImgModal('fr')">📷 Image</button>
+                <div class="tb-sep"></div>
+                <button onclick="rFmt('fr','clear')" style="opacity:.5">✕ Effacer</button>
+              </div>
+              <div class="rich-content" id="body-fr" contenteditable="true" data-lang="fr"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- DE -->
+        <div class="lang-panel" id="panel-de">
+          <div class="field"><label>Titel (DE)</label><input type="text" id="title-de" placeholder="Blogtitel auf Deutsch"></div>
+          <div class="field"><label>Kurzzusammenfassung (DE)</label><textarea id="excerpt-de" style="min-height:75px" placeholder="2–3 Sätze…"></textarea></div>
+          <div class="field">
+            <label>Vollständiger Text (DE)</label>
+            <div class="rich-editor-wrap">
+              <div class="rich-toolbar">
+                <button onclick="rFmt('de','bold')"><b>F</b></button>
+                <button onclick="rFmt('de','italic')"><i>K</i></button>
+                <div class="tb-sep"></div>
+                <button onclick="rFmt('de','h2')">H2</button>
+                <button onclick="rFmt('de','h3')">H3</button>
+                <div class="tb-sep"></div>
+                <button onclick="openImgModal('de')">📷 Bild</button>
+                <div class="tb-sep"></div>
+                <button onclick="rFmt('de','clear')" style="opacity:.5">✕ Löschen</button>
+              </div>
+              <div class="rich-content" id="body-de" contenteditable="true" data-lang="de"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- EN -->
+        <div class="lang-panel" id="panel-en">
+          <div class="field"><label>Title (EN)</label><input type="text" id="title-en" placeholder="Blog title in English"></div>
+          <div class="field"><label>Excerpt (EN)</label><textarea id="excerpt-en" style="min-height:75px" placeholder="2–3 sentences…"></textarea></div>
+          <div class="field">
+            <label>Full text (EN)</label>
+            <div class="rich-editor-wrap">
+              <div class="rich-toolbar">
+                <button onclick="rFmt('en','bold')"><b>B</b></button>
+                <button onclick="rFmt('en','italic')"><i>I</i></button>
+                <div class="tb-sep"></div>
+                <button onclick="rFmt('en','h2')">H2</button>
+                <button onclick="rFmt('en','h3')">H3</button>
+                <div class="tb-sep"></div>
+                <button onclick="openImgModal('en')">📷 Image</button>
+                <div class="tb-sep"></div>
+                <button onclick="rFmt('en','clear')" style="opacity:.5">✕ Clear</button>
+              </div>
+              <div class="rich-content" id="body-en" contenteditable="true" data-lang="en"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="editor-actions">
+          <button class="btn btn-danger btn-sm" id="deleteBtn" onclick="deleteCurrentBlog()" style="display:none;margin-right:auto">Verwijderen</button>
+          <button class="btn btn-dark" onclick="showView('admin')">Annuleren</button>
+          <button class="btn btn-dark" onclick="saveBlog('draft')">Concept opslaan</button>
+          <button class="btn btn-gold" onclick="saveBlog('published')">✓ Publiceren</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ IMAGE INSERT MODAL ═══ -->
+<div class="img-insert-modal" id="imgModal">
+  <div class="img-modal-box">
+    <h3>📷 Afbeelding invoegen</h3>
+    <div class="field">
+      <label>Afbeelding URL (Cloudinary, Google Drive, imgur…)</label>
+      <input type="text" id="imgUrl" placeholder="https://res.cloudinary.com/…/foto.jpg" oninput="previewModalImg(this.value)">
+    </div>
+    <img id="imgModalPreview" class="img-preview" src="" alt="">
+    <div class="field">
+      <label>Onderschrift (optioneel)</label>
+      <input type="text" id="imgCaption" placeholder="bv. Uitzicht over de wijngaarden…">
+    </div>
+    <div class="field">
+      <label>Breedte</label>
+      <div class="img-size-btns">
+        <button class="img-size-btn active" data-size="full" onclick="selectSize(this)">Volledig breed</button>
+        <button class="img-size-btn" data-size="center" onclick="selectSize(this)">Gecentreerd (80%)</button>
+        <button class="img-size-btn" data-size="left" onclick="selectSize(this)">Links uitlijnen</button>
+      </div>
+    </div>
+    <div class="img-modal-actions">
+      <button class="btn btn-dark" onclick="closeImgModal()">Annuleren</button>
+      <button class="btn btn-gold" onclick="insertImage()">Invoegen</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ════════════════════════════════════════════════════
+//  CONFIG
+// ════════════════════════════════════════════════════
+const PASS = 'champagne2025';
+const API = 'https://script.google.com/macros/s/AKfycbwp-zdELM5PgQcyJorBrhZ97hWPjjdfYY8w01-VD57TDA2Kia-T4eN6AP1hBuCLsvI/exec';
+
+// ════════════════════════════════════════════════════
+//  STATE
+// ════════════════════════════════════════════════════
+let lang = 'nl';
+let loggedIn = false;
+let blogs = [];
+let houseInfo = { charme:{}, chatrou:{} };
+let subscribers = [];
+let currentHouse = 'charme';
+let adminTab = 'blogs';
+let _imgModalLang = 'nl';
+let _imgSize = 'full';
+let _savedRange = null;
+
+// ════════════════════════════════════════════════════
+//  GOOGLE SHEETS API
+// ════════════════════════════════════════════════════
+async function apiGet(action){
+  const res = await fetch(`${API}?action=${action}`);
+  return res.json();
+}
+async function apiPost(body){
+  const res = await fetch(API, {
+    method:'POST',
+    body: JSON.stringify(body)
+  });
+  return res.json();
+}
+
+async function loadBlogs(){
+  try { blogs = await apiGet('getBlogs'); blogs=Array.isArray(blogs)?blogs:[]; } catch(e){ blogs=[]; }
+}
+async function saveBlogs(){
+  await apiPost({ action:'saveBlogs', data: blogs });
+}
+async function loadHouses(){
+  try {
+    const d = await apiGet('getHouses');
+    houseInfo = (d && d.charme) ? d : { charme:{}, chatrou:{} };
+  } catch(e){ houseInfo={charme:{},chatrou:{}}; }
+}
+async function saveHouses(){
+  await apiPost({ action:'saveHouses', data: houseInfo });
+}
+async function loadSubs(){
+  try { subscribers = await apiGet('getSubs'); subscribers=Array.isArray(subscribers)?subscribers:[]; } catch(e){ subscribers=[]; }
+}
+async function saveSub(email){
+  await apiPost({ action:'saveSub', email });
+}
+
+// ════════════════════════════════════════════════════
+//  UI TEXT
+// ════════════════════════════════════════════════════
+const T = {
+  nl:{ heroEye:'Vakantiehuizen in de Champagne', heroSub:'Verhalen uit de druivenvelden van de Champagne', heroBook:'Reserveren', heroBlog:'Lees de blogs', secLabel:'Laatste verhalen', secTitle:'Blogs uit de <em>Champagne</em>', housesLabel:'Onze huizen', housesTitle:'<em>Charme</em> &amp; <em>Chatrou</em>', qText:'La Champagne est une fête permanente — de Champagne is een eeuwig feest, voor wie de tijd neemt om te luisteren.', charmeLinkText:'Meer over Charme →', chatrouLinkText:'Meer over Chatrou →', nlTitle:'Blijf op de <em>hoogte</em>', nlSub:'Ontvang nieuwe blogs direct in uw inbox.<br>Schrijf u in en mis nooit een verhaal uit de Champagne.', nlPlaceholder:'uw@emailadres.nl', nlBtn:'Aanmelden', nlSuccess:'✓ Bedankt! U ontvangt voortaan onze blogs.', nlNote:'Uw e-mailadres wordt niet gedeeld met derden.', fTagline:'Vakantiehuizen in het hart van de Franse Champagne. Blogs over wijn, cultuur, natuur en het goede leven.', fNav:'Navigatie', fBlogs:'Blogs', fNl:'Nieuwsbrief', fReserve:'Reserveren', fBook:'Beschikbaarheid', fMade:'Met liefde gemaakt', postBack:'← Terug naar overzicht', houseBack:'← Terug', houseBookText:'Klaar voor een onvergetelijk verblijf in <span>de Champagne</span>?', houseBookBtn:'Reserveer via lacduder.eu →', adminBtn:'Beheer', empty:'Nog geen blogs gepubliceerd — kom binnenkort terug!', noInfo:'Informatie wordt binnenkort toegevoegd.', readMore:'Lees verder', navReserve:'Reserveren', navBookBtn:'Reserveren' },
+  fr:{ heroEye:'Maisons de vacances en Champagne', heroSub:"Histoires des vignes de Champagne", heroBook:'Réserver', heroBlog:'Lire les blogs', secLabel:'Dernières histoires', secTitle:'Blogs de la <em>Champagne</em>', housesLabel:'Nos maisons', housesTitle:'<em>Charme</em> &amp; <em>Chatrou</em>', qText:"La Champagne est une fête permanente, pour qui prend le temps d'écouter.", charmeLinkText:'En savoir plus sur Charme →', chatrouLinkText:'En savoir plus sur Chatrou →', nlTitle:'Restez <em>informé</em>', nlSub:'Recevez les nouveaux blogs directement dans votre boîte mail.', nlPlaceholder:'votre@email.fr', nlBtn:"S'inscrire", nlSuccess:'✓ Merci ! Vous recevrez nos prochains blogs.', nlNote:'Votre adresse e-mail ne sera pas partagée.', fTagline:'Maisons de vacances au cœur de la Champagne française.', fNav:'Navigation', fBlogs:'Blogs', fNl:'Newsletter', fReserve:'Réserver', fBook:'Disponibilité', fMade:'Fait avec amour', postBack:'← Retour', houseBack:'← Retour', houseBookText:'Prêt pour un séjour inoubliable en <span>Champagne</span>?', houseBookBtn:'Réserver via lacduder.eu →', adminBtn:'Admin', empty:'Aucun blog publié pour le moment.', noInfo:'Les informations seront ajoutées prochainement.', readMore:'Lire la suite', navReserve:'Réserver', navBookBtn:'Réserver' },
+  de:{ heroEye:'Ferienhäuser in der Champagne', heroSub:'Geschichten aus den Weinbergen der Champagne', heroBook:'Reservieren', heroBlog:'Blogs lesen', secLabel:'Neueste Geschichten', secTitle:'Blogs aus der <em>Champagne</em>', housesLabel:'Unsere Häuser', housesTitle:'<em>Charme</em> &amp; <em>Chatrou</em>', qText:'La Champagne est une fête permanente — die Champagne ist ein ewiges Fest, für den, der sich die Zeit nimmt zuzuhören.', charmeLinkText:'Mehr über Charme →', chatrouLinkText:'Mehr über Chatrou →', nlTitle:'Bleiben Sie <em>informiert</em>', nlSub:'Erhalten Sie neue Blogs direkt in Ihrem Posteingang.', nlPlaceholder:'ihre@email.de', nlBtn:'Anmelden', nlSuccess:'✓ Danke! Sie erhalten unsere nächsten Blogs.', nlNote:'Ihre E-Mail-Adresse wird nicht weitergegeben.', fTagline:'Ferienhäuser im Herzen der Champagne.', fNav:'Navigation', fBlogs:'Blogs', fNl:'Newsletter', fReserve:'Reservieren', fBook:'Verfügbarkeit', fMade:'Mit Liebe gemacht', postBack:'← Zurück', houseBack:'← Zurück', houseBookText:'Bereit für einen unvergesslichen Aufenthalt in der <span>Champagne</span>?', houseBookBtn:'Reservieren via lacduder.eu →', adminBtn:'Verwaltung', empty:'Noch keine Blogs veröffentlicht.', noInfo:'Informationen werden in Kürze hinzugefügt.', readMore:'Weiterlesen', navReserve:'Reservieren', navBookBtn:'Reservieren' },
+  en:{ heroEye:'Holiday homes in the Champagne', heroSub:'Stories from the vineyards of Champagne', heroBook:'Book now', heroBlog:'Read the blogs', secLabel:'Latest stories', secTitle:'Blogs from <em>Champagne</em>', housesLabel:'Our houses', housesTitle:'<em>Charme</em> &amp; <em>Chatrou</em>', qText:"La Champagne est une fête permanente — Champagne is an eternal celebration, for those who take time to listen.", charmeLinkText:'More about Charme →', chatrouLinkText:'More about Chatrou →', nlTitle:'Stay <em>informed</em>', nlSub:'Receive new blogs directly in your inbox.', nlPlaceholder:'your@email.com', nlBtn:'Subscribe', nlSuccess:'✓ Thank you! You will receive our next blogs.', nlNote:'Your email address will not be shared.', fTagline:'Holiday homes in the heart of the French Champagne.', fNav:'Navigation', fBlogs:'Blogs', fNl:'Newsletter', fReserve:'Book', fBook:'Availability', fMade:'Made with love', postBack:'← Back to overview', houseBack:'← Back', houseBookText:'Ready for an unforgettable stay in <span>the Champagne</span>?', houseBookBtn:'Book via lacduder.eu →', adminBtn:'Admin', empty:'No blogs published yet — check back soon!', noInfo:'Information will be added soon.', readMore:'Read more', navReserve:'Book', navBookBtn:'Book now' }
+};
+
+function _(id,html){ const e=document.getElementById(id); if(e) e.innerHTML=html; }
+function _t(id,txt){ const e=document.getElementById(id); if(e) e.textContent=txt; }
+function _a(id,attr,val){ const e=document.getElementById(id); if(e) e[attr]=val; }
+
+function setLang(l){
+  lang=l;
+  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.textContent.toLowerCase()===l));
+  const t=T[l];
+  _('heroEye',t.heroEye); _('heroSub',t.heroSub);
+  _('heroBookBtn',t.heroBook); _('heroBlogBtn',t.heroBlog);
+  _('secLabel',t.secLabel); _('secTitle',t.secTitle);
+  _('housesLabel',t.housesLabel); _('housesTitle',t.housesTitle);
+  _('qText',t.qText);
+  _('charmeLinkText',t.charmeLinkText); _('chatrouLinkText',t.chatrouLinkText);
+  _('nlTitle',t.nlTitle); _('nlSub',t.nlSub); _a('nlEmail','placeholder',t.nlPlaceholder);
+  _('nlBtn',t.nlBtn); _('nlNote',t.nlNote);
+  _('fTagline',t.fTagline); _('fNav',t.fNav); _('fBlogs',t.fBlogs);
+  _('fNl',t.fNl); _('fReserve',t.fReserve); _('fBook',t.fBook); _('fMade',t.fMade);
+  _('navReserve',t.navReserve); _('navBookBtn',t.navBookBtn); _('adminBtn',t.adminBtn);
+  _('postBack',t.postBack); _('houseBack',t.houseBack);
+  _('houseBookText',t.houseBookText); _('houseBookBtn',t.houseBookBtn);
+  const cp=(houseInfo.charme['body_'+l]||houseInfo.charme.body_nl||t.noInfo);
+  const tp=(houseInfo.chatrou['body_'+l]||houseInfo.chatrou.body_nl||t.noInfo);
+  _('charmePreview', cp.replace(/<[^>]*>/g,'').slice(0,200)+(cp.length>200?'…':''));
+  _('chatrouPreview', tp.replace(/<[^>]*>/g,'').slice(0,200)+(tp.length>200?'…':''));
+  renderGrid();
+}
+
+// ════════════════════════════════════════════════════
+//  VIEWS
+// ════════════════════════════════════════════════════
+function showView(name){
+  if((name==='admin'||name==='editor')&&!loggedIn){ showView('login'); return; }
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.getElementById('view-'+name).classList.add('active');
+  window.scrollTo(0,0);
+  if(name==='admin') renderAdmin();
+  if(name==='home'){ renderGrid(); }
+}
+function scrollToBlog(){ showView('home'); setTimeout(()=>{ const el=document.getElementById('blogAnchor'); if(el) el.scrollIntoView({behavior:'smooth'}); },120); }
+
+// ════════════════════════════════════════════════════
+//  BUBBLES
+// ════════════════════════════════════════════════════
+function initBubbles(){
+  const c=document.getElementById('bubblesCont'); if(!c) return;
+  for(let i=0;i<16;i++){
+    const b=document.createElement('div'); b.className='bubble';
+    const sz=Math.random()*12+4;
+    b.style.cssText=`width:${sz}px;height:${sz}px;left:${Math.random()*100}%;animation-duration:${Math.random()*8+5}s;animation-delay:${Math.random()*9}s`;
+    c.appendChild(b);
+  }
+}
+
+// ════════════════════════════════════════════════════
+//  BLOG GRID
+// ════════════════════════════════════════════════════
+function locale(l){ return {nl:'nl-NL',fr:'fr-FR',de:'de-DE',en:'en-GB'}[l]||'nl-NL'; }
+
+function renderGrid(){
+  const g=document.getElementById('blogGrid'); if(!g) return;
+  const list=blogs.filter(b=>b.status==='published').sort((a,b)=>b.createdAt-a.createdAt);
+  if(!list.length){
+    g.innerHTML=`<div class="empty-state"><div class="empty-icon">🥂</div><p class="empty-text">${T[lang].empty}</p></div>`;
+    return;
+  }
+  g.innerHTML=`<div class="blog-grid">${list.map(p=>{
+    const title=p['title_'+lang]||p.title_nl||p.title_fr||p.title_en||p.title_de||'(geen titel)';
+    const excerpt=p['excerpt_'+lang]||p.excerpt_nl||'';
+    const date=new Date(p.createdAt).toLocaleDateString(locale(lang),{year:'numeric',month:'long'});
+    const imgHtml = p.coverImg
+      ? `<img class="blog-card-img" src="${esc(p.coverImg)}" alt="${esc(title)}" loading="lazy">`
+      : `<div class="blog-card-img-placeholder">🍾</div>`;
+    return `<div class="blog-card" onclick="openPost('${p.id}')">
+      ${imgHtml}
+      <div class="blog-card-body">
+        <div class="card-date-label">${date}${p.catLabel?' · '+p.catLabel:''}</div>
+        <h3 class="card-title">${title}</h3>
+        <p class="card-excerpt">${excerpt}</p>
+        <div class="card-foot"><span></span><span class="card-more">${T[lang].readMore} →</span></div>
+      </div>
+    </div>`;
+  }).join('')}</div>`;
+}
+
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+// ════════════════════════════════════════════════════
+//  SINGLE POST (magazine style)
+// ════════════════════════════════════════════════════
+function openPost(id){
+  const p=blogs.find(b=>b.id===id); if(!p) return;
+  const title=p['title_'+lang]||p.title_nl||'';
+  const body=p['body_'+lang]||p.body_nl||'';
+  const date=new Date(p.createdAt).toLocaleDateString(locale(lang),{weekday:'long',year:'numeric',month:'long',day:'numeric'});
+  _('postTitle',title);
+  _t('postDate',date); _t('postCat',p.catLabel||'Champagne');
+  _('postKicker',p.catLabel||'Champagne');
+  // hero image
+  const heroEl=document.getElementById('postHeroImg');
+  if(p.coverImg){ heroEl.src=p.coverImg; heroEl.style.display='block'; }
+  else { heroEl.style.display='none'; }
+  // body: stored as HTML from rich editor
+  document.getElementById('postBody').innerHTML = body || '';
+  _('postBack',T[lang].postBack);
+  showView('post');
+}
+
+// ════════════════════════════════════════════════════
+//  HOUSE PAGE
+// ════════════════════════════════════════════════════
+function showHouse(which){
+  currentHouse=which;
+  const t=T[lang];
+  const info=houseInfo[which]||{};
+  _('houseName',which.charAt(0).toUpperCase()+which.slice(1));
+  const bodyText=info['body_'+lang]||info.body_nl||'';
+  _('houseBody', bodyText
+    ? bodyText.split(/\n\n+/).map(p=>`<p>${p.replace(/\n/g,'<br>')}</p>`).join('')
+    : `<p style="color:var(--text-light);font-style:italic">${t.noInfo}</p>`
+  );
+  _('houseBack',t.houseBack);
+  _('houseBookText',t.houseBookText);
+  _('houseBookBtn',t.houseBookBtn);
+  showView('house');
+}
+
+// ════════════════════════════════════════════════════
+//  NEWSLETTER
+// ════════════════════════════════════════════════════
+async function subscribeNewsletter(){
+  const input=document.getElementById('nlEmail');
+  const email=input.value.trim();
+  if(!email||!email.includes('@')){ input.style.borderColor='rgba(247,100,100,.6)'; return; }
+  input.style.borderColor='';
+  await saveSub(email);
+  document.getElementById('nlForm').style.display='none';
+  _('nlSuccess',T[lang].nlSuccess);
+  document.getElementById('nlSuccess').style.display='block';
+}
+
+// ════════════════════════════════════════════════════
+//  AUTH
+// ════════════════════════════════════════════════════
+function doLogin(){
+  const pw=document.getElementById('pwInput').value;
+  if(pw===PASS){ loggedIn=true; document.getElementById('loginErr').style.display='none'; document.getElementById('pwInput').value=''; showView('admin'); }
+  else { document.getElementById('loginErr').style.display='block'; }
+}
+function doLogout(){ loggedIn=false; showView('home'); }
+
+// ════════════════════════════════════════════════════
+//  ADMIN
+// ════════════════════════════════════════════════════
+function switchAdminTab(tab){ adminTab=tab; document.querySelectorAll('.atab').forEach(t=>t.classList.toggle('active',t.dataset.tab===tab)); renderAdmin(); }
+
+async function renderAdmin(){
+  if(!loggedIn){ showView('login'); return; }
+  const el=document.getElementById('adminTabContent');
+  el.innerHTML=`<div style="text-align:center;padding:4rem;color:rgba(247,237,216,.35)"><p style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-style:italic">Laden\u2026</p></div>`;
+  if(adminTab==='blogs'){ await loadBlogs(); renderBlogList(el); }
+  else if(adminTab==='houses'){ await loadHouses(); renderHouseEditor(el); }
+  else if(adminTab==='subs'){ await loadSubs(); renderSubscribers(el); }
+}
+
+function renderBlogList(el){
+  const sorted=[...blogs].sort((a,b)=>b.createdAt-a.createdAt);
+  if(!sorted.length){ el.innerHTML=`<div style="text-align:center;padding:4rem;color:rgba(247,237,216,.22)"><p style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-style:italic">Nog geen blogs. Klik op + Nieuw blog.</p></div>`; return; }
+  el.innerHTML=`<div style="font-size:.58rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:.7rem">${sorted.length} blog${sorted.length!==1?'s':''}</div>
+  <div class="post-list">${sorted.map(p=>{
+    const title=p.title_nl||p.title_fr||p.title_en||p.title_de||'(geen titel)';
+    const date=new Date(p.createdAt).toLocaleDateString('nl-NL',{day:'numeric',month:'short',year:'numeric'});
+    const badge=p.status==='published'?'<span class="badge badge-pub">Gepubliceerd</span>':'<span class="badge badge-draft">Concept</span>';
+    const thumb=p.coverImg?`<img src="${esc(p.coverImg)}" style="width:48px;height:34px;object-fit:cover;margin-right:.8rem;opacity:.8;flex-shrink:0" alt="">`:'';
+    return `<div class="post-row">${thumb}<div class="pr-title">${title}${badge}</div><div class="pr-date">${date}</div><div class="pr-acts"><button class="btn btn-dark btn-sm" onclick="openEditor('${p.id}')">Bewerken</button></div></div>`;
+  }).join('')}</div>`;
+}
+
+function renderHouseEditor(el){
+  const hi_c=houseInfo.charme||{}; const hi_t=houseInfo.chatrou||{};
+  el.innerHTML=`
+  <p style="font-size:.8rem;color:rgba(247,237,216,.38);margin-bottom:1.5rem;line-height:1.7">Schrijf hier informatie over elk vakantiehuis in vier talen. Gebruik een lege regel tussen alinea's.</p>
+  <div class="house-editor-grid">
+    ${houseEditorBox('charme','Charme','hes-charme',hi_c)}
+    ${houseEditorBox('chatrou','Chatrou','hes-chatrou',hi_t)}
+  </div>
+  <div style="display:flex;justify-content:flex-end;margin-top:1.5rem">
+    <button class="btn btn-gold" onclick="saveHouseInfo()">✓ Opslaan</button>
+  </div>`;
+}
+
+function houseEditorBox(key,name,cls,info){
+  const ls=[['nl','🇳🇱 NL'],['fr','🇫🇷 FR'],['de','🇩🇪 DE'],['en','🇬🇧 EN']];
+  const tabs=ls.map(([l,label])=>`<button class="ltab${l==='nl'?' active':''}" data-hkey="${key}" data-hlang="${l}" onclick="switchHouseTab('${key}','${l}')">${label}</button>`).join('');
+  const panels=ls.map(([l])=>`<div class="lang-panel${l==='nl'?' active':''}" id="hpanel-${key}-${l}"><div class="field"><label>Tekst (${l.toUpperCase()})</label><textarea id="hbody-${key}-${l}" style="min-height:200px" placeholder="Informatie over ${name}…">${(info['body_'+l]||'').replace(/</g,'&lt;')}</textarea></div></div>`).join('');
+  return `<div class="house-edit-section ${cls}"><div class="hes-name">${name}</div><div class="lang-tabs-editor">${tabs}</div>${panels}</div>`;
+}
+
+function switchHouseTab(key,l){
+  document.querySelectorAll(`[data-hkey="${key}"]`).forEach(t=>t.classList.toggle('active',t.dataset.hlang===l));
+  ['nl','fr','de','en'].forEach(ll=>{ const p=document.getElementById(`hpanel-${key}-${ll}`); if(p) p.classList.toggle('active',ll===l); });
+}
+
+async function saveHouseInfo(){
+  for(const key of ['charme','chatrou']){
+    const info={};
+    ['nl','fr','de','en'].forEach(l=>{ const e=document.getElementById(`hbody-${key}-${l}`); if(e) info['body_'+l]=e.value.trim(); });
+    houseInfo[key]=info;
+  }
+  toast('Opslaan\u2026');
+  await saveHouses();
+  const t=T[lang];
+  const cp=(houseInfo.charme['body_'+lang]||houseInfo.charme.body_nl||t.noInfo);
+  const tp=(houseInfo.chatrou['body_'+lang]||houseInfo.chatrou.body_nl||t.noInfo);
+  _('charmePreview',cp.replace(/<[^>]*>/g,'').slice(0,200)+(cp.length>200?'\u2026':''));
+  _('chatrouPreview',tp.replace(/<[^>]*>/g,'').slice(0,200)+(tp.length>200?'\u2026':''));
+  toast('\u2713 Huisinformatie opgeslagen');
+}
+
+function renderSubscribers(el){
+  if(!subscribers.length){ el.innerHTML=`<div class="sub-list"><div class="sub-empty">Nog geen aanmeldingen voor de nieuwsbrief.</div></div>`; return; }
+  el.innerHTML=`<div class="sub-count">${subscribers.length} aanmelding${subscribers.length!==1?'en':''}</div>
+  <div class="sub-list">${subscribers.map(s=>{
+    const d=new Date(s.date).toLocaleDateString('nl-NL',{day:'numeric',month:'long',year:'numeric'});
+    return `<div class="sub-row"><span class="sub-email">${esc(s.email)}</span><span class="sub-date">${d}</span></div>`;
+  }).join('')}</div>
+  <div style="display:flex;justify-content:flex-end;margin-top:1rem">
+    <button class="btn btn-dark btn-sm" onclick="exportEmails()">↓ E-mails kopiëren</button>
+  </div>`;
+}
+
+function exportEmails(){ const list=subscribers.map(s=>s.email).join('\n'); navigator.clipboard.writeText(list).then(()=>toast('✓ Gekopieerd naar klembord')).catch(()=>prompt('Kopieer:',list)); }
+
+// ════════════════════════════════════════════════════
+//  BLOG EDITOR
+// ════════════════════════════════════════════════════
+async function openEditor(id){
+  await loadBlogs();
+  const ls=['nl','fr','de','en'];
+  if(id){
+    const p=blogs.find(b=>b.id===id); if(!p) return;
+    _('editorHeading','Blog <em>Bewerken</em>');
+    document.getElementById('editId').value=id;
+    document.getElementById('editCatLabel').value=p.catLabel||'';
+    document.getElementById('editStatus').value=p.status||'draft';
+    document.getElementById('editCoverImg').value=p.coverImg||'';
+    previewCover(p.coverImg||'');
+    ls.forEach(l=>{
+      document.getElementById('title-'+l).value=p['title_'+l]||'';
+      document.getElementById('excerpt-'+l).value=p['excerpt_'+l]||'';
+      document.getElementById('body-'+l).innerHTML=p['body_'+l]||'';
+    });
+    document.getElementById('deleteBtn').style.display='inline-block';
+  } else {
+    _('editorHeading','Nieuw <em>Blog</em>');
+    document.getElementById('editId').value='';
+    document.getElementById('editCatLabel').value='';
+    document.getElementById('editStatus').value='draft';
+    document.getElementById('editCoverImg').value='';
+    previewCover('');
+    ls.forEach(l=>{
+      document.getElementById('title-'+l).value='';
+      document.getElementById('excerpt-'+l).value='';
+      document.getElementById('body-'+l).innerHTML='';
+    });
+    document.getElementById('deleteBtn').style.display='none';
+  }
+  switchLangTab('nl');
+  showView('editor');
+}
+
+function switchLangTab(l){
+  document.querySelectorAll('.ltab[data-lang]').forEach(t=>t.classList.toggle('active',t.dataset.lang===l));
+  document.querySelectorAll('.lang-panel[id^="panel-"]').forEach(p=>p.classList.remove('active'));
+  const panel=document.getElementById('panel-'+l); if(panel) panel.classList.add('active');
+}
+
+async function saveBlog(status){
+  const ls=['nl','fr','de','en'];
+  const id=document.getElementById('editId').value;
+  await loadBlogs();
+  const existing=id?blogs.find(b=>b.id===id):null;
+  const post={
+    id:id||'blog_'+Date.now()+'_'+Math.random().toString(36).slice(2,6),
+    catLabel:document.getElementById('editCatLabel').value.trim(),
+    coverImg:document.getElementById('editCoverImg').value.trim(),
+    status,
+    createdAt:existing?existing.createdAt:Date.now(),
+    updatedAt:Date.now()
+  };
+  ls.forEach(l=>{
+    post['title_'+l]=document.getElementById('title-'+l).value.trim();
+    post['excerpt_'+l]=document.getElementById('excerpt-'+l).value.trim();
+    post['body_'+l]=document.getElementById('body-'+l).innerHTML.trim();
+  });
+  if(!ls.some(l=>post['title_'+l])){ toast('\u26a0 Voer minimaal \u00e9\u00e9n titel in.'); return; }
+  if(id){ const i=blogs.findIndex(b=>b.id===id); if(i!==-1) blogs[i]=post; else blogs.push(post); }
+  else blogs.push(post);
+  toast('Opslaan\u2026');
+  await saveBlogs();
+  toast(status==='published'?'\u2713 Blog gepubliceerd':'\u2713 Concept opgeslagen');
+  setTimeout(()=>{ adminTab='blogs'; showView('admin'); },800);
+}
+
+async function deleteCurrentBlog(){
+  const id=document.getElementById('editId').value; if(!id) return;
+  if(!confirm('Weet u zeker dat u dit blog wilt verwijderen?')) return;
+  await loadBlogs();
+  blogs=blogs.filter(b=>b.id!==id);
+  toast('Verwijderen\u2026');
+  await saveBlogs();
+  toast('Blog verwijderd');
+  setTimeout(()=>{ adminTab='blogs'; showView('admin'); },700);
+}
+
+// ════════════════════════════════════════════════════
+//  COVER IMAGE PREVIEW
+// ════════════════════════════════════════════════════
+function previewCover(url){
+  const el=document.getElementById('coverPreview');
+  if(url){ el.src=url; el.style.display='block'; }
+  else { el.style.display='none'; }
+}
+
+// ════════════════════════════════════════════════════
+//  RICH EDITOR TOOLBAR
+// ════════════════════════════════════════════════════
+function rFmt(lang, cmd){
+  const el=document.getElementById('body-'+lang);
+  el.focus();
+  if(cmd==='bold'){ document.execCommand('bold'); }
+  else if(cmd==='italic'){ document.execCommand('italic'); }
+  else if(cmd==='h2'){
+    document.execCommand('formatBlock', false, 'h2');
+  } else if(cmd==='h3'){
+    document.execCommand('formatBlock', false, 'h3');
+  } else if(cmd==='clear'){
+    document.execCommand('removeFormat');
+    document.execCommand('formatBlock', false, 'p');
+  }
+}
+
+// ════════════════════════════════════════════════════
+//  IMAGE INSERT MODAL
+// ════════════════════════════════════════════════════
+function openImgModal(l){
+  // Save cursor position
+  const sel = window.getSelection();
+  if(sel && sel.rangeCount) _savedRange = sel.getRangeAt(0).cloneRange();
+  _imgModalLang = l;
+  _imgSize = 'full';
+  document.getElementById('imgUrl').value='';
+  document.getElementById('imgCaption').value='';
+  document.getElementById('imgModalPreview').style.display='none';
+  document.querySelectorAll('.img-size-btn').forEach(b=>b.classList.toggle('active',b.dataset.size==='full'));
+  document.getElementById('imgModal').classList.add('open');
+}
+
+function closeImgModal(){
+  document.getElementById('imgModal').classList.remove('open');
+}
+
+function previewModalImg(url){
+  const el=document.getElementById('imgModalPreview');
+  if(url){ el.src=url; el.style.display='block'; }
+  else { el.style.display='none'; }
+}
+
+function selectSize(btn){
+  _imgSize=btn.dataset.size;
+  document.querySelectorAll('.img-size-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+function insertImage(){
+  const url=document.getElementById('imgUrl').value.trim();
+  if(!url){ toast('⚠ Voer een afbeelding-URL in.'); return; }
+  const caption=document.getElementById('imgCaption').value.trim();
+
+  let styleAttr='';
+  if(_imgSize==='full') styleAttr='width:100%;display:block;';
+  else if(_imgSize==='center') styleAttr='width:80%;display:block;margin:0 auto;';
+  else if(_imgSize==='left') styleAttr='width:50%;float:left;margin:0 1.5rem 1rem 0;';
+
+  const captionHtml=caption?`<div class="post-img-caption">${caption}</div>`:'';
+  const block=`<div class="post-img-block" style="margin:2rem 0;overflow:hidden"><img src="${esc(url)}" alt="${esc(caption)}" style="${styleAttr}max-width:100%">${captionHtml}</div><p><br></p>`;
+
+  const el=document.getElementById('body-'+_imgModalLang);
+  el.focus();
+
+  // Restore saved cursor position and insert there
+  if(_savedRange){
+    const sel=window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(_savedRange);
+    document.execCommand('insertHTML', false, block);
+  } else {
+    el.innerHTML += block;
+  }
+
+  closeImgModal();
+  toast('✓ Afbeelding ingevoegd');
+}
+
+// ════════════════════════════════════════════════════
+//  TOAST
+// ════════════════════════════════════════════════════
+function toast(msg){ const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),3000); }
+
+// ════════════════════════════════════════════════════
+//  INIT
+// ════════════════════════════════════════════════════
+async function init(){
+  initBubbles();
+  setLang('nl');
+  await loadBlogs();
+  await loadHouses();
+  renderGrid();
+  // update house previews
+  const t=T[lang];
+  const cp=(houseInfo.charme['body_'+lang]||houseInfo.charme.body_nl||t.noInfo);
+  const tp=(houseInfo.chatrou['body_'+lang]||houseInfo.chatrou.body_nl||t.noInfo);
+  _('charmePreview',cp.replace(/<[^>]*>/g,'').slice(0,200)+(cp.length>200?'\u2026':''));
+  _('chatrouPreview',tp.replace(/<[^>]*>/g,'').slice(0,200)+(tp.length>200?'\u2026':''));
+}
+init();
+</script>
+</body>
+</html>
